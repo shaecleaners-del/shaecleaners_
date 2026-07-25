@@ -3,30 +3,1173 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Live Chat | Shae Cleaners</title>
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="chat.css">
+<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="chat.css"/>
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+  <b:skin>
+  <![CDATA[
+/*======================================
+CHAT.CSS
+Shae Cleaners Premium
+======================================*/
 
+:root{
+
+--primary:#0D6EFD;
+--secondary:#38BDF8;
+--success:#22C55E;
+--danger:#EF4444;
+
+--bg:#F4F8FC;
+--white:#FFFFFF;
+--text:#1E293B;
+--grey:#64748B;
+
+--radius:20px;
+--shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+
+}
+
+body{
+
+background:var(--bg);
+
+display:flex;
+
+flex-direction:column;
+
+height:100vh;
+
+overflow:hidden;
+
+}
+
+/*=========================
+HEADER
+=========================*/
+
+.chat-header{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:16px 20px;
+
+background:linear-gradient(135deg,#0D6EFD,#38BDF8);
+
+color:#fff;
+
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+
+}
+
+.back-btn{
+
+width:42px;
+height:42px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+background:rgba(255,255,255,.2);
+
+border-radius:50%;
+
+color:#fff;
+
+text-decoration:none;
+
+}
+
+.chat-user{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.chat-user img{
+
+width:50px;
+height:50px;
+
+border-radius:50%;
+
+background:#fff;
+
+padding:5px;
+
+}
+
+.chat-user h3{
+
+font-size:18px;
+
+}
+
+.chat-user span{
+
+font-size:13px;
+
+opacity:.9;
+
+}
+
+/*=========================
+CHAT AREA
+=========================*/
+
+.chat-container{
+
+flex:1;
+
+overflow-y:auto;
+
+padding:20px;
+
+}
+
+.message{
+
+display:flex;
+
+flex-direction:column;
+
+margin-bottom:18px;
+
+}
+
+.message.admin{
+
+align-items:flex-start;
+
+}
+
+.message.user{
+
+align-items:flex-end;
+
+}
+
+.bubble{
+
+max-width:80%;
+
+padding:14px 16px;
+
+border-radius:18px;
+
+font-size:14px;
+
+line-height:1.6;
+
+box-shadow:var(--shadow);
+
+}
+
+.message.admin .bubble{
+
+background:#fff;
+
+color:var(--text);
+
+border-top-left-radius:6px;
+
+}
+
+.message.user .bubble{
+
+background:linear-gradient(135deg,#0D6EFD,#38BDF8);
+
+color:#fff;
+
+border-top-right-radius:6px;
+
+}
+
+.time{
+
+margin-top:5px;
+
+font-size:11px;
+
+color:var(--grey);
+
+}
+/*======================================
+INPUT CHAT
+======================================*/
+
+.chat-input{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:15px;
+
+background:#fff;
+
+border-top:1px solid #E5E7EB;
+
+}
+
+.chat-input input[type="text"]{
+
+flex:1;
+
+padding:14px 18px;
+
+border:1px solid #E5E7EB;
+
+border-radius:30px;
+
+outline:none;
+
+font-size:15px;
+
+background:#F8FAFC;
+
+}
+
+.icon-btn,
+#sendMessage{
+
+width:46px;
+
+height:46px;
+
+border:none;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+cursor:pointer;
+
+font-size:18px;
+
+transition:.3s;
+
+}
+
+.icon-btn{
+
+background:#EEF4FF;
+
+color:var(--primary);
+
+}
+
+#sendMessage{
+
+background:linear-gradient(135deg,#0D6EFD,#38BDF8);
+
+color:#fff;
+
+}
+
+.icon-btn:hover,
+#sendMessage:hover{
+
+transform:scale(1.08);
+
+}
+
+/*======================================
+EMOJI PANEL
+======================================*/
+
+.emoji-panel{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+padding:15px;
+
+background:#fff;
+
+border-top:1px solid #E5E7EB;
+
+}
+
+.emoji{
+
+width:42px;
+
+height:42px;
+
+border:none;
+
+background:#F1F5F9;
+
+border-radius:12px;
+
+cursor:pointer;
+
+font-size:22px;
+
+transition:.3s;
+
+}
+
+.emoji:hover{
+
+background:#E2E8F0;
+
+transform:scale(1.1);
+
+}
+
+/*======================================
+TYPING
+======================================*/
+
+.typing-status{
+
+padding:10px 20px;
+
+font-size:13px;
+
+color:var(--grey);
+
+font-style:italic;
+
+}
+
+/*======================================
+OFFLINE INFO
+======================================*/
+
+.offline-info{
+
+margin:12px;
+
+padding:14px;
+
+background:#FEF3C7;
+
+color:#92400E;
+
+border-radius:14px;
+
+font-size:14px;
+
+}
+
+/*======================================
+QUICK CHAT
+======================================*/
+
+.quick-chat{
+
+display:flex;
+
+gap:10px;
+
+overflow-x:auto;
+
+padding:10px 15px;
+
+background:#fff;
+
+}
+
+.quick-btn{
+
+padding:10px 18px;
+
+border:none;
+
+border-radius:20px;
+
+background:#EEF4FF;
+
+color:var(--primary);
+
+font-weight:600;
+
+cursor:pointer;
+
+white-space:nowrap;
+
+transition:.3s;
+
+}
+
+.quick-btn:hover{
+
+background:var(--primary);
+
+color:#fff;
+
+}
+
+/*======================================
+RESPONSIVE
+======================================*/
+
+@media(max-width:768px){
+
+.chat-user h3{
+
+font-size:16px;
+
+}
+
+.bubble{
+
+max-width:90%;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.chat-header{
+
+padding:14px;
+
+}
+
+.chat-input{
+
+padding:12px;
+
+}
+
+.chat-input input[type="text"]{
+
+font-size:14px;
+
+}
+
+.quick-btn{
+
+font-size:13px;
+
+padding:8px 14px;
+
+}
+
+}
+
+/*======================================
+DARK MODE
+======================================*/
+
+body.dark{
+
+background:#0F172A;
+
+}
+
+body.dark .chat-container{
+
+background:#0F172A;
+
+}
+
+body.dark .message.admin .bubble{
+
+background:#1E293B;
+
+color:#F8FAFC;
+
+}
+
+body.dark .chat-input,
+
+body.dark .emoji-panel,
+
+body.dark .quick-chat{
+
+background:#1E293B;
+
+}
+
+body.dark .chat-input input{
+
+background:#334155;
+
+color:#fff;
+
+border-color:#475569;
+
+}
+
+body.dark .typing-status{
+
+color:#CBD5E1;
+
+}
+
+/*======================================
+ANIMATION
+======================================*/
+
+@keyframes fadeMessage{
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.message{
+
+animation:fadeMessage .3s ease;
+
+}
+
+/*======================================
+SCROLLBAR
+======================================*/
+
+.chat-container::-webkit-scrollbar{
+
+width:6px;
+
+}
+
+.chat-container::-webkit-scrollbar-thumb{
+
+background:var(--primary);
+
+border-radius:20px;
+
+}   ]]>
+  </b:skin>
+<style>
+/*======================================
+CHAT.CSS
+Shae Cleaners Premium
+======================================*/
+
+:root{
+
+--primary:#0D6EFD;
+--secondary:#38BDF8;
+--success:#22C55E;
+--danger:#EF4444;
+
+--bg:#F4F8FC;
+--white:#FFFFFF;
+--text:#1E293B;
+--grey:#64748B;
+
+--radius:20px;
+--shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+
+}
+
+body{
+
+background:var(--bg);
+
+display:flex;
+
+flex-direction:column;
+
+height:100vh;
+
+overflow:hidden;
+
+}
+
+/*=========================
+HEADER
+=========================*/
+
+.chat-header{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:16px 20px;
+
+background:linear-gradient(135deg,#0D6EFD,#38BDF8);
+
+color:#fff;
+
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+
+}
+
+.back-btn{
+
+width:42px;
+height:42px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+background:rgba(255,255,255,.2);
+
+border-radius:50%;
+
+color:#fff;
+
+text-decoration:none;
+
+}
+
+.chat-user{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.chat-user img{
+
+width:50px;
+height:50px;
+
+border-radius:50%;
+
+background:#fff;
+
+padding:5px;
+
+}
+
+.chat-user h3{
+
+font-size:18px;
+
+}
+
+.chat-user span{
+
+font-size:13px;
+
+opacity:.9;
+
+}
+
+/*=========================
+CHAT AREA
+=========================*/
+
+.chat-container{
+
+flex:1;
+
+overflow-y:auto;
+
+padding:20px;
+
+}
+
+.message{
+
+display:flex;
+
+flex-direction:column;
+
+margin-bottom:18px;
+
+}
+
+.message.admin{
+
+align-items:flex-start;
+
+}
+
+.message.user{
+
+align-items:flex-end;
+
+}
+
+.bubble{
+
+max-width:80%;
+
+padding:14px 16px;
+
+border-radius:18px;
+
+font-size:14px;
+
+line-height:1.6;
+
+box-shadow:var(--shadow);
+
+}
+
+.message.admin .bubble{
+
+background:#fff;
+
+color:var(--text);
+
+border-top-left-radius:6px;
+
+}
+
+.message.user .bubble{
+
+background:linear-gradient(135deg,#0D6EFD,#38BDF8);
+
+color:#fff;
+
+border-top-right-radius:6px;
+
+}
+
+.time{
+
+margin-top:5px;
+
+font-size:11px;
+
+color:var(--grey);
+
+}
+/*======================================
+INPUT CHAT
+======================================*/
+
+.chat-input{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:15px;
+
+background:#fff;
+
+border-top:1px solid #E5E7EB;
+
+}
+
+.chat-input input[type="text"]{
+
+flex:1;
+
+padding:14px 18px;
+
+border:1px solid #E5E7EB;
+
+border-radius:30px;
+
+outline:none;
+
+font-size:15px;
+
+background:#F8FAFC;
+
+}
+
+.icon-btn,
+#sendMessage{
+
+width:46px;
+
+height:46px;
+
+border:none;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+cursor:pointer;
+
+font-size:18px;
+
+transition:.3s;
+
+}
+
+.icon-btn{
+
+background:#EEF4FF;
+
+color:var(--primary);
+
+}
+
+#sendMessage{
+
+background:linear-gradient(135deg,#0D6EFD,#38BDF8);
+
+color:#fff;
+
+}
+
+.icon-btn:hover,
+#sendMessage:hover{
+
+transform:scale(1.08);
+
+}
+
+/*======================================
+EMOJI PANEL
+======================================*/
+
+.emoji-panel{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+padding:15px;
+
+background:#fff;
+
+border-top:1px solid #E5E7EB;
+
+}
+
+.emoji{
+
+width:42px;
+
+height:42px;
+
+border:none;
+
+background:#F1F5F9;
+
+border-radius:12px;
+
+cursor:pointer;
+
+font-size:22px;
+
+transition:.3s;
+
+}
+
+.emoji:hover{
+
+background:#E2E8F0;
+
+transform:scale(1.1);
+
+}
+
+/*======================================
+TYPING
+======================================*/
+
+.typing-status{
+
+padding:10px 20px;
+
+font-size:13px;
+
+color:var(--grey);
+
+font-style:italic;
+
+}
+
+/*======================================
+OFFLINE INFO
+======================================*/
+
+.offline-info{
+
+margin:12px;
+
+padding:14px;
+
+background:#FEF3C7;
+
+color:#92400E;
+
+border-radius:14px;
+
+font-size:14px;
+
+}
+
+/*======================================
+QUICK CHAT
+======================================*/
+
+.quick-chat{
+
+display:flex;
+
+gap:10px;
+
+overflow-x:auto;
+
+padding:10px 15px;
+
+background:#fff;
+
+}
+
+.quick-btn{
+
+padding:10px 18px;
+
+border:none;
+
+border-radius:20px;
+
+background:#EEF4FF;
+
+color:var(--primary);
+
+font-weight:600;
+
+cursor:pointer;
+
+white-space:nowrap;
+
+transition:.3s;
+
+}
+
+.quick-btn:hover{
+
+background:var(--primary);
+
+color:#fff;
+
+}
+
+/*======================================
+RESPONSIVE
+======================================*/
+
+@media(max-width:768px){
+
+.chat-user h3{
+
+font-size:16px;
+
+}
+
+.bubble{
+
+max-width:90%;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.chat-header{
+
+padding:14px;
+
+}
+
+.chat-input{
+
+padding:12px;
+
+}
+
+.chat-input input[type="text"]{
+
+font-size:14px;
+
+}
+
+.quick-btn{
+
+font-size:13px;
+
+padding:8px 14px;
+
+}
+
+}
+
+/*======================================
+DARK MODE
+======================================*/
+
+body.dark{
+
+background:#0F172A;
+
+}
+
+body.dark .chat-container{
+
+background:#0F172A;
+
+}
+
+body.dark .message.admin .bubble{
+
+background:#1E293B;
+
+color:#F8FAFC;
+
+}
+
+body.dark .chat-input,
+
+body.dark .emoji-panel,
+
+body.dark .quick-chat{
+
+background:#1E293B;
+
+}
+
+body.dark .chat-input input{
+
+background:#334155;
+
+color:#fff;
+
+border-color:#475569;
+
+}
+
+body.dark .typing-status{
+
+color:#CBD5E1;
+
+}
+
+/*======================================
+ANIMATION
+======================================*/
+
+@keyframes fadeMessage{
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.message{
+
+animation:fadeMessage .3s ease;
+
+}
+
+/*======================================
+SCROLLBAR
+======================================*/
+
+.chat-container::-webkit-scrollbar{
+
+width:6px;
+
+}
+
+.chat-container::-webkit-scrollbar-thumb{
+
+background:var(--primary);
+
+border-radius:20px;
+
+}</style>
 </head>
 
 <body>
 
 <header class="chat-header">
 
-<a href="pages/akun.html" class="back-btn">
+<a href="/pages/akun.html" class="back-btn">
 <i class="fa-solid fa-arrow-left"></i>
 </a>
 
 <div class="chat-user">
 
-<img src="assets/logo/logo.png" alt="Shae Cleaners">
+<img src="/assets/logo/logo.png" alt="Shae Cleaners">
 
 <div>
 
@@ -174,6 +1317,507 @@ Pesan Anda tetap akan diterima dan dibalas pada jam operasional.
 
 <script type="module" src="firebase.js"></script>
 <script type="module" src="chat.js"></script>
+<script>/*=========================================
+CHAT.JS
+Shae Cleaners
+=========================================*/
 
+import { auth, db } from "./firebase.js";
+
+import {
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+import {
+collection,
+addDoc,
+query,
+where,
+orderBy,
+onSnapshot,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+const chatMessages = document.getElementById("chatMessages");
+const messageInput = document.getElementById("messageInput");
+const sendMessage = document.getElementById("sendMessage");
+
+let currentUser = null;
+
+/*=========================================
+LOGIN
+=========================================*/
+
+onAuthStateChanged(auth, (user)=>{
+
+    if(!user){
+
+        window.location.href="login.html";
+        return;
+
+    }
+
+    currentUser = user;
+
+    loadMessages();
+
+});
+
+/*=========================================
+KIRIM PESAN
+=========================================*/
+
+sendMessage.addEventListener("click", sendChat);
+
+messageInput.addEventListener("keypress",(e)=>{
+
+    if(e.key==="Enter"){
+
+        sendChat();
+
+    }
+
+});
+
+async function sendChat(){
+
+    const text = messageInput.value.trim();
+
+    if(text==="") return;
+
+    try{
+
+        await addDoc(
+            collection(db,"chat"),
+            {
+
+                uid:currentUser.uid,
+                sender:"user",
+                message:text,
+                createdAt:serverTimestamp(),
+                read:false
+
+            }
+        );
+
+        messageInput.value="";
+
+    }catch(err){
+
+        alert(err.message);
+
+    }
+
+}
+/*=========================================
+LOAD CHAT REALTIME
+=========================================*/
+
+function loadMessages(){
+
+    const q = query(
+        collection(db,"chat"),
+        where("uid","==",currentUser.uid),
+        orderBy("createdAt","asc")
+    );
+
+    onSnapshot(q,(snapshot)=>{
+
+        chatMessages.innerHTML="";
+
+        snapshot.forEach((docSnap)=>{
+
+            const data=docSnap.data();
+
+            const div=document.createElement("div");
+
+            div.className=
+            `message ${data.sender}`;
+
+            div.innerHTML=`
+
+                <div class="bubble">
+
+                    ${data.message}
+
+                </div>
+
+                <span class="time">
+
+                    ${formatTime(data.createdAt)}
+
+                </span>
+
+            `;
+
+            chatMessages.appendChild(div);
+
+        });
+
+        scrollBottom();
+
+    });
+
+}
+
+
+/*=========================================
+FORMAT JAM
+=========================================*/
+
+function formatTime(timestamp){
+
+    if(!timestamp) return "";
+
+    const date=timestamp.toDate();
+
+    return date.toLocaleTimeString("id-ID",{
+
+        hour:"2-digit",
+        minute:"2-digit"
+
+    });
+
+}
+
+
+/*=========================================
+AUTO SCROLL
+=========================================*/
+
+function scrollBottom(){
+
+    chatMessages.scrollTop=
+    chatMessages.scrollHeight;
+
+}
+
+
+/*=========================================
+EMOJI
+=========================================*/
+
+document
+.querySelectorAll(".emoji")
+.forEach((emoji)=>{
+
+emoji.addEventListener("click",()=>{
+
+messageInput.value+=emoji.textContent;
+
+messageInput.focus();
+
+});
+
+});
+
+
+/*=========================================
+QUICK CHAT
+=========================================*/
+
+document
+.querySelectorAll(".quick-btn")
+.forEach((btn)=>{
+
+btn.addEventListener("click",()=>{
+
+messageInput.value=
+btn.dataset.message;
+
+messageInput.focus();
+
+});
+
+});
+
+
+/*=========================================
+UPLOAD GAMBAR
+=========================================*/
+
+const imageInput=
+document.getElementById("imageInput");
+
+imageInput.addEventListener("change",(e)=>{
+
+const file=e.target.files[0];
+
+if(!file) return;
+
+alert(
+"Upload gambar akan diaktifkan setelah Firebase Storage dikonfigurasi."
+);
+
+});
+
+
+/*=========================================
+UPLOAD DOKUMEN
+=========================================*/
+
+const fileInput=
+document.getElementById("fileInput");
+
+fileInput.addEventListener("change",(e)=>{
+
+const file=e.target.files[0];
+
+if(!file) return;
+
+alert(
+"Upload dokumen akan diaktifkan setelah Firebase Storage dikonfigurasi."
+);
+
+});
+
+
+/*=========================================
+STATUS ADMIN
+=========================================*/
+
+const adminStatus=
+document.getElementById("adminStatus");
+
+adminStatus.textContent=
+"ðŸŸ¢ Online";
+
+
+/*=========================================
+READY
+=========================================*/
+
+console.log(
+"Live Chat Ready - Shae Cleaners"
+);</script>
+<script>
+/*=========================================
+ SHAE CLEANERS FIREBASE
+=========================================*/
+
+import { db, storage } from "./firebase-config.js";
+
+import {
+
+collection,
+addDoc,
+getDocs,
+doc,
+updateDoc,
+deleteDoc,
+query,
+orderBy,
+onSnapshot
+
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+import {
+
+ref,
+uploadBytes,
+getDownloadURL
+
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
+
+/*=========================================
+ SIMPAN ORDER
+=========================================*/
+
+export async function simpanOrder(data){
+
+try{
+
+const hasil = await addDoc(
+
+collection(db,"orders"),
+
+{
+
+...data,
+
+createdAt:new Date()
+
+}
+
+);
+
+return hasil.id;
+
+}catch(err){
+
+console.error(err);
+
+alert("Gagal menyimpan order.");
+
+}
+
+}
+
+/*=========================================
+ AMBIL SEMUA ORDER
+=========================================*/
+
+export async function ambilOrder(){
+
+const daftar=[];
+
+const q=query(
+
+collection(db,"orders"),
+
+orderBy("createdAt","desc")
+
+);
+
+const snap=await getDocs(q);
+
+snap.forEach(docItem=>{
+
+daftar.push({
+
+id:docItem.id,
+
+...docItem.data()
+
+});
+
+});
+
+return daftar;
+
+}
+
+/*=========================================
+ REALTIME ORDER
+=========================================*/
+
+export function realtimeOrder(callback){
+
+const q=query(
+
+collection(db,"orders"),
+
+orderBy("createdAt","desc")
+
+);
+
+return onSnapshot(q,(snapshot)=>{
+
+const data=[];
+
+snapshot.forEach(item=>{
+
+data.push({
+
+id:item.id,
+
+...item.data()
+
+});
+
+});
+
+callback(data);
+
+});
+
+}
+
+/*=========================================
+ UPDATE STATUS
+=========================================*/
+
+export async function updateStatus(id,status){
+
+await updateDoc(
+
+doc(db,"orders",id),
+
+{
+
+status:status
+
+}
+
+);
+
+}
+
+/*=========================================
+ HAPUS ORDER
+=========================================*/
+
+export async function hapusOrder(id){
+
+await deleteDoc(
+
+doc(db,"orders",id)
+
+);
+
+}
+
+/*=========================================
+ UPLOAD FOTO
+=========================================*/
+
+export async function uploadFoto(file){
+
+const namaFile=
+
+Date.now()+"_"+file.name;
+
+const storageRef=
+
+ref(storage,"order/"+namaFile);
+
+await uploadBytes(storageRef,file);
+
+const url=
+
+await getDownloadURL(storageRef);
+
+return url;
+
+}
+
+/*=========================================
+ GENERATE INVOICE
+=========================================*/
+
+export function generateInvoice(){
+
+const d=new Date();
+
+return "INV-"+
+
+d.getFullYear()+
+
+String(d.getMonth()+1).padStart(2,"0")+
+
+String(d.getDate()).padStart(2,"0")+
+
+"-"+
+
+Math.floor(Math.random()*900+100);
+
+}
+
+console.log("Firebase Shae Cleaners siap digunakan.");
+export async function uploadBukti(file){
+
+const storageRef = ref(
+
+storage,
+
+"payment/"+Date.now()+"_"+file.name
+
+);
+
+await uploadBytes(storageRef,file);
+
+return await getDownloadURL(storageRef);
+
+}</script>
 </body>
 </html>
