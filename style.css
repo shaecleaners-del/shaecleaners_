@@ -501,3 +501,78 @@ font-size:26px;
 
 margin-bottom:8px;
 }
+/* ================= PROMO SLIDER ================= */
+
+.promo-slider{
+padding:20px;
+}
+
+.promo-slider h2{
+margin-bottom:15px;
+font-size:22px;
+}
+
+.promo-wrapper{
+position:relative;
+overflow:hidden;
+border-radius:22px;
+}
+
+.promo-slide{
+display:none;
+background:#fff;
+border-radius:22px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.promo-slide.active{
+display:block;
+animation:fade .6s;
+}
+
+.promo-slide img{
+width:100%;
+display:block;
+}
+
+.promo-text{
+padding:18px;
+}
+
+.promo-text h3{
+margin-bottom:10px;
+}
+
+.promo-text p{
+color:#666;
+margin-bottom:15px;
+}
+
+.promo-text a{
+display:inline-block;
+padding:12px 22px;
+background:#0A7CFF;
+color:#fff;
+border-radius:30px;
+text-decoration:none;
+font-weight:600;
+}
+
+.promo-dot{
+display:flex;
+justify-content:center;
+margin-top:15px;
+gap:8px;
+}
+
+.dot{
+width:10px;
+height:10px;
+border-radius:50%;
+background:#ccc;
+}
+
+.dot.active{
+background:#0A7CFF;
+}
