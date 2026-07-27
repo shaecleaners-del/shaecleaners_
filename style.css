@@ -400,3 +400,104 @@ cursor:pointer;
 box-shadow:0 8px 20px rgba(0,0,0,.2);
 z-index:999;
 }
+/* ================= HERO CARD ================= */
+
+.hero-card{
+
+margin:18px;
+
+padding:20px;
+
+border-radius:24px;
+
+background:linear-gradient(135deg,#0A7CFF,#3EA6FF);
+
+color:#fff;
+
+box-shadow:0 10px 30px rgba(10,124,255,.25);
+
+}
+
+.hero-info{
+
+display:flex;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+.logo-box img{
+
+width:70px;
+
+height:70px;
+
+border-radius:20px;
+
+background:#fff;
+
+padding:8px;
+
+}
+
+.text-box{
+
+margin-left:15px;
+
+}
+
+.text-box h2{
+
+font-size:24px;
+
+font-weight:700;
+
+}
+
+.text-box p{
+
+opacity:.9;
+
+margin-top:4px;
+
+}
+
+.hero-action{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:12px;
+
+}
+
+.hero-action a{
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(10px);
+border-radius:18px;
+padding:15px 10px;
+text-align:center;
+text-decoration:none;
+color:#fff;
+font-size:13px;
+font-weight:600;
+
+transition:.3s;
+}
+.hero-action a:hover{
+
+transform:translateY(-4px);
+
+background:rgba(255,255,255,.28);
+}
+.hero-action i{
+
+display:block;
+
+font-size:26px;
+
+margin-bottom:8px;
+}
