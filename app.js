@@ -142,3 +142,36 @@ window.addEventListener("load",()=>{
 document.body.classList.add("loaded");
 
 });
+/* Hero Card Animation */
+
+const hero=document.querySelector(".hero-card");
+
+window.addEventListener("load",()=>{
+
+hero.animate([
+
+{
+
+opacity:0,
+
+transform:"translateY(30px)"
+
+},
+
+{
+
+opacity:1,
+
+transform:"translateY(0)"
+
+}
+
+],{
+
+duration:800,
+
+fill:"forwards"
+
+});
+
+});
