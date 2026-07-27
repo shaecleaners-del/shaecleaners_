@@ -363,6 +363,40 @@ font-size:13px;
 .fitur h2,
 .testimoni h2{
 font-size:20px;
+}}
+/* Animasi Muncul */
+
+.menu-grid a,
+.fitur-box div,
+.card,
+.promo-card{
+opacity:0;
+transform:translateY(25px);
+transition:.6s;
 }
 
+.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* Tombol Scroll Atas */
+
+#topButton{
+position:fixed;
+right:20px;
+bottom:90px;
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+background:#0A7CFF;
+color:#fff;
+font-size:22px;
+display:none;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 8px 20px rgba(0,0,0,.2);
+z-index:999;
 }
