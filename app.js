@@ -1,266 +1,128 @@
-/*=========================================
- Shae Cleaners Premium App
-=========================================*/
+/* ======================================
+   SHAE CLEANERS PREMIUM SCRIPT
+====================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+/* ===== Slider Otomatis ===== */
 
-    /* =========================
-       Splash Screen
-    ========================== */
+const slides = document.querySelectorAll(".slide");
 
-    const splash = document.getElementById("splash");
+let index = 0;
 
-    window.addEventListener("load", () => {
-        setTimeout(() => {
-            splash.style.opacity = "0";
-            splash.style.visibility = "hidden";
-        }, 1800);
-    });
+function showSlide(){
 
-    /* =========================
-       Hero Slider
-    ========================== */
+slides.forEach(slide=>slide.classList.remove("active"));
 
-    const slides = document.querySelectorAll(".slide");
+index++;
 
-    let currentSlide = 0;
+if(index > slides.length){
+index = 1;
+}
 
-    function showSlide(index){
-
-        slides.forEach(slide=>{
-            slide.classList.remove("active");
-        });
-
-        slides[index].classList.add("active");
-
-    }
-
-    function nextSlide(){
-
-        currentSlide++;
-
-        if(currentSlide>=slides.length){
-            currentSlide=0;
-        }
-
-        showSlide(currentSlide);
-
-    }
-
-    if(slides.length>0){
-
-        showSlide(currentSlide);
-
-        setInterval(nextSlide,5000);
-
-    }
-
-    /* =========================
-       Promo Slider Auto
-    ========================== */
-
-    const promoSlider = document.querySelector(".promo-slider");
-
-    if(promoSlider){
-
-        let scrollAmount=0;
-
-        setInterval(()=>{
-
-            scrollAmount += 340;
-
-            if(scrollAmount>=promoSlider.scrollWidth){
-
-                scrollAmount=0;
-
-            }
-
-            promoSlider.scrollTo({
-
-                left:scrollAmount,
-
-                behavior:"smooth"
-
-            });
-
-        },3500);
-
-    }
-
-    /* =========================
-       Gallery Auto
-    ========================== */
-
-    const gallery=document.querySelector(".gallery-slider");
-
-    if(gallery){
-
-        let g=0;
-
-        setInterval(()=>{
-
-            g+=300;
-
-            if(g>=gallery.scrollWidth){
-
-                g=0;
-
-            }
-
-            gallery.scrollTo({
-
-                left:g,
-
-                behavior:"smooth"
-
-            });
-
-        },3000);
-
-    }
-
-    /* =========================
-       Counter Animation
-    ========================== */
-
-    const counters=document.querySelectorAll(".count");
-
-    counters.forEach(counter=>{
-
-        const update=()=>{
-
-            const target=Number(counter.dataset.target);
-
-            const count=Number(counter.innerText);
-
-            const speed=80;
-
-            const inc=target/speed;
-
-            if(count<target){
-
-                counter.innerText=Math.ceil(count+inc);
-
-                setTimeout(update,30);
-
-            }else{
-
-                counter.innerText=target;
-
-            }
-
-        }
-
-        update();
-
-    });
-
-});
-/*=========================================
- Ripple Effect
-=========================================*/
-
-document.querySelectorAll(".card,.btn-order,.promo-info a,.bottom-nav a")
-.forEach(button=>{
-
-button.addEventListener("click",function(e){
-
-let ripple=document.createElement("span");
-
-ripple.className="ripple-effect";
-
-let rect=this.getBoundingClientRect();
-
-ripple.style.left=(e.clientX-rect.left)+"px";
-ripple.style.top=(e.clientY-rect.top)+"px";
-
-this.appendChild(ripple);
-
-setTimeout(()=>{
-ripple.remove();
-},600);
-
-});
-
-});
-
-/*=========================================
- Bottom Navigation Active
-=========================================*/
-
-const currentPage=location.pathname.split("/").pop();
-
-document.querySelectorAll(".bottom-nav a").forEach(link=>{
-
-const href=link.getAttribute("href");
-
-if(href===currentPage){
-
-link.classList.add("active");
+slides[index-1].classList.add("active");
 
 }
 
-});
+showSlide();
 
-/*=========================================
- Dark Mode
-=========================================*/
+setInterval(showSlide,4000);
 
-const darkBtn=document.getElementById("darkMode");
 
-if(darkBtn){
+/* ===== Pencarian Menu ===== */
 
-if(localStorage.getItem("theme")=="dark"){
+const searchInput = document.querySelector(".search-box input");
 
-document.body.classList.add("dark");
+const menuItems = document.querySelectorAll(".menu-grid a");
 
-}
+searchInput.addEventListener("keyup",function(){
 
-darkBtn.addEventListener("click",()=>{
+let keyword = this.value.toLowerCase();
 
-document.body.classList.toggle("dark");
+menuItems.forEach(item=>{
 
-if(document.body.classList.contains("dark")){
+let text = item.innerText.toLowerCase();
 
-localStorage.setItem("theme","dark");
+if(text.indexOf(keyword)>-1){
+
+item.style.display="block";
 
 }else{
 
-localStorage.setItem("theme","light");
+item.style.display="none";
 
 }
 
 });
 
+});
+
+
+/* ===== Animasi Scroll ===== */
+
+const observer = new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
 }
 
-/*=========================================
- Back To Top
-=========================================*/
+});
+
+});
+
+document.querySelectorAll(".promo-card,.card,.fitur-box div,.menu-grid a").forEach((el)=>{
+
+observer.observe(el);
+
+});
+
+
+/* ===== Efek Klik ===== */
+
+menuItems.forEach(menu=>{
+
+menu.addEventListener("click",function(){
+
+this.style.transform="scale(.95)";
+
+setTimeout(()=>{
+
+this.style.transform="scale(1)";
+
+},150);
+
+});
+
+});
+
+
+/* ===== Tombol Kembali ke Atas ===== */
 
 const topButton=document.createElement("button");
 
-topButton.innerHTML='<i class="fa-solid fa-arrow-up"></i>';
+topButton.innerHTML="↑";
 
-topButton.className="backTop";
+topButton.id="topButton";
 
 document.body.appendChild(topButton);
 
-window.addEventListener("scroll",()=>{
+window.onscroll=function(){
 
-if(window.scrollY>500){
+if(document.documentElement.scrollTop>300){
 
-topButton.classList.add("show");
+topButton.style.display="flex";
 
 }else{
 
-topButton.classList.remove("show");
+topButton.style.display="none";
 
 }
 
-});
+}
 
-topButton.onclick=()=>{
+topButton.onclick=function(){
 
 window.scrollTo({
 
@@ -270,419 +132,13 @@ behavior:"smooth"
 
 });
 
-};
-
-/*=========================================
- Lazy Loading Image
-=========================================*/
-
-const images=document.querySelectorAll("img[data-src]");
-
-const observer=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-const img=entry.target;
-
-img.src=img.dataset.src;
-
-img.removeAttribute("data-src");
-
-observer.unobserve(img);
-
 }
 
-});
 
-});
-
-images.forEach(img=>{
-
-observer.observe(img);
-
-});
-
-/*=========================================
- Floating WhatsApp Message
-=========================================*/
-
-const wa=document.querySelector(".floating-wa");
-
-if(wa){
-
-wa.href="https://wa.me/628XXXXXXXXXX?text=Halo%20Shae%20Cleaners,%20saya%20ingin%20booking%20layanan.";
-
-}
-
-/*=========================================
- Welcome Popup Promo
-=========================================*/
-
-setTimeout(()=>{
-
-if(!sessionStorage.getItem("promo")){
-
-const promo=document.createElement("div");
-
-promo.className="popupPromo";
-
-promo.innerHTML=`
-
-<div class="popupBox">
-
-<h2>🎉 Promo Spesial</h2>
-
-<p>Dapatkan diskon hingga <b>30%</b> untuk layanan pilihan.</p>
-
-<button id="closePromo">
-
-Tutup
-
-</button>
-
-</div>
-
-`;
-
-document.body.appendChild(promo);
-
-document
-.getElementById("closePromo")
-.onclick=()=>{
-
-promo.remove();
-
-};
-
-sessionStorage.setItem("promo","1");
-
-}
-
-},2500);
-
-/*=========================================
- Header Shadow
-=========================================*/
-
-window.addEventListener("scroll",()=>{
-
-const header=document.querySelector("header");
-
-if(window.scrollY>40){
-
-header.classList.add("shadow");
-
-}else{
-
-header.classList.remove("shadow");
-
-}
-
-});
-
-/*=========================================
- Smooth Scroll Anchor
-=========================================*/
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-
-anchor.addEventListener("click",function(e){
-
-e.preventDefault();
-
-document.querySelector(this.getAttribute("href")).scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-});
-
-});
-/*=========================================
- SHAE CLEANERS APP.JS PART 3
-=========================================*/
-
-/*=========================
- Hero Slider Swipe
-=========================*/
-
-const hero = document.querySelector(".slider");
-
-if(hero){
-
-let startX = 0;
-
-hero.addEventListener("touchstart",(e)=>{
-
-startX = e.touches[0].clientX;
-
-});
-
-hero.addEventListener("touchend",(e)=>{
-
-let endX = e.changedTouches[0].clientX;
-
-if(startX-endX>50){
-
-nextSlide();
-
-}
-
-if(endX-startX>50){
-
-currentSlide--;
-
-if(currentSlide<0){
-
-currentSlide=slides.length-1;
-
-}
-
-showSlide(currentSlide);
-
-}
-
-});
-
-}
-
-/*=========================
- Scroll Animation
-=========================*/
-
-const reveal=document.querySelectorAll(".card,.promo-card,.why-card,.testimonial-card");
-
-function revealElement(){
-
-reveal.forEach(el=>{
-
-const top=el.getBoundingClientRect().top;
-
-const visible=window.innerHeight-80;
-
-if(top<visible){
-
-el.classList.add("fade-up");
-
-}
-
-});
-
-}
-
-window.addEventListener("scroll",revealElement);
-
-revealElement();
-
-/*=========================
- Floating Button Effect
-=========================*/
-
-const floating=document.querySelector(".floating-wa");
-
-if(floating){
-
-setInterval(()=>{
-
-floating.classList.toggle("zoom");
-
-},1800);
-
-}
-
-/*=========================
- Install PWA
-=========================*/
-
-let deferredPrompt;
-
-window.addEventListener("beforeinstallprompt",(e)=>{
-
-e.preventDefault();
-
-deferredPrompt=e;
-
-const install=document.createElement("button");
-
-install.innerHTML="📲 Install Aplikasi";
-
-install.className="installApp";
-
-document.body.appendChild(install);
-
-install.onclick=async()=>{
-
-install.style.display="none";
-
-deferredPrompt.prompt();
-
-await deferredPrompt.userChoice;
-
-deferredPrompt=null;
-
-}
-
-});
-
-/*=========================
- Online Offline
-=========================*/
-
-function updateStatus(){
-
-const status=document.createElement("div");
-
-status.className="netStatus";
-
-if(navigator.onLine){
-
-status.innerHTML="🟢 Online";
-
-status.style.background="#16a34a";
-
-}else{
-
-status.innerHTML="🔴 Offline";
-
-status.style.background="#dc2626";
-
-}
-
-document.body.appendChild(status);
-
-setTimeout(()=>{
-
-status.remove();
-
-},2500);
-
-}
-
-window.addEventListener("online",updateStatus);
-
-window.addEventListener("offline",updateStatus);
-
-/*=========================
- Search Menu
-=========================*/
-
-const search=document.querySelector(".search-box input");
-
-if(search){
-
-search.addEventListener("keyup",()=>{
-
-let value=search.value.toLowerCase();
-
-document.querySelectorAll(".card").forEach(card=>{
-
-let text=card.innerText.toLowerCase();
-
-card.style.display=text.includes(value)?"block":"none";
-
-});
-
-});
-
-}
-
-/*=========================
- Auto Hide Header
-=========================*/
-
-let lastScroll=0;
-
-window.addEventListener("scroll",()=>{
-
-const header=document.querySelector("header");
-
-let current=window.pageYOffset;
-
-if(current>lastScroll){
-
-header.style.top="-120px";
-
-}else{
-
-header.style.top="0";
-
-}
-
-lastScroll=current;
-
-});
-
-/*=========================
- Loading Bar
-=========================*/
-
-const loading=document.createElement("div");
-
-loading.className="loadingBar";
-
-document.body.appendChild(loading);
+/* ===== Loading Halaman ===== */
 
 window.addEventListener("load",()=>{
 
-loading.style.width="100%";
-
-setTimeout(()=>{
-
-loading.remove();
-
-},800);
+document.body.classList.add("loaded");
 
 });
-
-/*=========================
- Copy Rekening
-=========================*/
-
-document.querySelectorAll(".copyRek").forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-navigator.clipboard.writeText(btn.dataset.rekening);
-
-alert("Nomor rekening berhasil disalin");
-
-});
-
-});
-
-/*=========================
- Audio Klik
-=========================*/
-
-const clickAudio=new Audio("assets/audio/click.mp3");
-
-document.querySelectorAll("button,a,.card").forEach(item=>{
-
-item.addEventListener("click",()=>{
-
-clickAudio.play();
-
-});
-
-});
-
-/*=========================
- Footer Year
-=========================*/
-
-const year=document.getElementById("year");
-
-if(year){
-
-year.innerHTML=new Date().getFullYear();
-
-}
-
-/*=========================
- Console
-=========================*/
-
-console.log("Shae Cleaners Premium V3 Loaded Successfully");
